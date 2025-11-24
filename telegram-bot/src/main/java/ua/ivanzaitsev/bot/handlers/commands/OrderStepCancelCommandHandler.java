@@ -1,5 +1,7 @@
 package ua.ivanzaitsev.bot.handlers.commands;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.bots.AbsSender;
@@ -12,21 +14,13 @@ import ua.ivanzaitsev.bot.repositories.ClientActionRepository;
 import ua.ivanzaitsev.bot.repositories.ClientCommandStateRepository;
 import ua.ivanzaitsev.bot.repositories.ClientOrderStateRepository;
 
+@Component
+@RequiredArgsConstructor
 public class OrderStepCancelCommandHandler implements UpdateHandler {
 
     private final ClientActionRepository clientActionRepository;
     private final ClientCommandStateRepository clientCommandStateRepository;
     private final ClientOrderStateRepository clientOrderStateRepository;
-
-    public OrderStepCancelCommandHandler(
-            ClientActionRepository clientActionRepository,
-            ClientCommandStateRepository clientCommandStateRepository,
-            ClientOrderStateRepository clientOrderStateRepository) {
-
-        this.clientActionRepository = clientActionRepository;
-        this.clientCommandStateRepository = clientCommandStateRepository;
-        this.clientOrderStateRepository = clientOrderStateRepository;
-    }
 
     @Override
     public Command getCommand() {

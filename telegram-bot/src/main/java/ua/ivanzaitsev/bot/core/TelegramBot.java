@@ -6,8 +6,10 @@ import static java.util.stream.Collectors.toMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -20,9 +22,9 @@ import ua.ivanzaitsev.bot.models.domain.ClientAction;
 import ua.ivanzaitsev.bot.models.domain.Command;
 import ua.ivanzaitsev.bot.repositories.ClientActionRepository;
 
+@Component
+@Slf4j
 public class TelegramBot extends TelegramLongPollingBot {
-
-    private final Logger logger = LogManager.getLogger(getClass());
 
     private final String telegramBotUsername;
     private final ClientActionRepository clientActionRepository;
@@ -52,7 +54,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         try {
             handle(update);
         } catch (Exception e) {
-            logger.error("Failed to handle update", e);
+            log.error("Failed to handle update", e);
         }
     }
 

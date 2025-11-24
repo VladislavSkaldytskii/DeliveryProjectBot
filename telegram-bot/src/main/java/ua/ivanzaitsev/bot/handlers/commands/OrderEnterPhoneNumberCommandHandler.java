@@ -3,7 +3,9 @@ package ua.ivanzaitsev.bot.handlers.commands;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
@@ -24,6 +26,8 @@ import ua.ivanzaitsev.bot.repositories.ClientActionRepository;
 import ua.ivanzaitsev.bot.repositories.ClientCommandStateRepository;
 import ua.ivanzaitsev.bot.repositories.ClientOrderStateRepository;
 
+@Component
+@RequiredArgsConstructor
 public class OrderEnterPhoneNumberCommandHandler implements CommandHandler, UpdateHandler, ActionHandler {
 
     private static final String ENTER_PHONE_NUMBER_ACTION = "order=enter-client-phone-number";
@@ -35,18 +39,6 @@ public class OrderEnterPhoneNumberCommandHandler implements CommandHandler, Upda
     private final ClientActionRepository clientActionRepository;
     private final ClientCommandStateRepository clientCommandStateRepository;
     private final ClientOrderStateRepository clientOrderStateRepository;
-
-    public OrderEnterPhoneNumberCommandHandler(
-            CommandHandlerRegistry commandHandlerRegistry,
-            ClientActionRepository clientActionRepository,
-            ClientCommandStateRepository clientCommandStateRepository,
-            ClientOrderStateRepository clientOrderStateRepository) {
-
-        this.commandHandlerRegistry = commandHandlerRegistry;
-        this.clientActionRepository = clientActionRepository;
-        this.clientCommandStateRepository = clientCommandStateRepository;
-        this.clientOrderStateRepository = clientOrderStateRepository;
-    }
 
     @Override
     public Command getCommand() {
@@ -142,7 +134,7 @@ public class OrderEnterPhoneNumberCommandHandler implements CommandHandler, Upda
 
     private void handlePhoneNumber(AbsSender absSender, Update update, Long chatId, String text)
             throws TelegramApiException {
-        
+
         if (Button.ORDER_STEP_NEXT.getAlias().equals(text)) {
             executeNextCommand(absSender, update, chatId);
             return;

@@ -5,6 +5,13 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.4</version>
+        <relativePath/>
+    </parent>
+
     <groupId>ua.ivanzaitsev</groupId>
     <artifactId>shop-telegram-bot</artifactId>
     <version>1.0.0</version>

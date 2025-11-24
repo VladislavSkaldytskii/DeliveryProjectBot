@@ -3,9 +3,11 @@ package ua.ivanzaitsev.bot.repositories.database;
 import static ua.ivanzaitsev.bot.repositories.hibernate.HibernateTransactionFactory.inTransaction;
 import static ua.ivanzaitsev.bot.repositories.hibernate.HibernateTransactionFactory.inTransactionVoid;
 
+import org.springframework.stereotype.Repository;
 import ua.ivanzaitsev.bot.models.entities.Client;
 import ua.ivanzaitsev.bot.repositories.ClientRepository;
 
+@Repository
 public class ClientRepositoryDefault implements ClientRepository {
 
     @Override

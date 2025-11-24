@@ -3,6 +3,8 @@ package ua.ivanzaitsev.bot.handlers.commands;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
@@ -31,6 +33,8 @@ import ua.ivanzaitsev.bot.repositories.hibernate.HibernateTransactionFactory;
 import ua.ivanzaitsev.bot.services.MessageService;
 import ua.ivanzaitsev.bot.services.NotificationService;
 
+@Component
+@RequiredArgsConstructor
 public class OrderConfirmCommandHandler implements CommandHandler, ActionHandler {
 
     private static final String CONFIRM_ORDER_ACTION = "order=confirm";
@@ -43,26 +47,6 @@ public class OrderConfirmCommandHandler implements CommandHandler, ActionHandler
     private final ClientRepository clientRepository;
     private final MessageService messageService;
     private final NotificationService notificationService;
-
-    public OrderConfirmCommandHandler(
-            ClientActionRepository clientActionRepository,
-            ClientCommandStateRepository clientCommandStateRepository,
-            ClientOrderStateRepository clientOrderStateRepository,
-            CartRepository cartRepository,
-            OrderRepository orderRepository,
-            ClientRepository clientRepository,
-            MessageService messageService,
-            NotificationService notificationService) {
-
-        this.clientActionRepository = clientActionRepository;
-        this.clientCommandStateRepository = clientCommandStateRepository;
-        this.clientOrderStateRepository = clientOrderStateRepository;
-        this.cartRepository = cartRepository;
-        this.orderRepository = orderRepository;
-        this.clientRepository = clientRepository;
-        this.messageService = messageService;
-        this.notificationService = notificationService;
-    }
 
     @Override
     public Command getCommand() {

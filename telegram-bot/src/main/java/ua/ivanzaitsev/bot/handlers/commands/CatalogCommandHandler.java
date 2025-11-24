@@ -6,7 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.AnswerInlineQuery;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
@@ -36,6 +38,8 @@ import ua.ivanzaitsev.bot.repositories.CategoryRepository;
 import ua.ivanzaitsev.bot.repositories.ProductRepository;
 import ua.ivanzaitsev.bot.services.MessageService;
 
+@Component
+@RequiredArgsConstructor
 public class CatalogCommandHandler implements CommandHandler, UpdateHandler {
 
     private static final int PRODUCTS_QUANTITY_PER_PAGE = 50;
@@ -56,20 +60,6 @@ public class CatalogCommandHandler implements CommandHandler, UpdateHandler {
     private final ProductRepository productRepository;
     private final CartRepository cartRepository;
     private final MessageService messageService;
-
-    public CatalogCommandHandler(
-            CommandHandlerRegistry commandHandlerRegistry,
-            CategoryRepository categoryRepository,
-            ProductRepository productRepository,
-            CartRepository cartRepository,
-            MessageService messageService) {
-
-        this.commandHandlerRegistry = commandHandlerRegistry;
-        this.categoryRepository = categoryRepository;
-        this.productRepository = productRepository;
-        this.cartRepository = cartRepository;
-        this.messageService = messageService;
-    }
 
     @Override
     public Command getCommand() {
@@ -110,7 +100,7 @@ public class CatalogCommandHandler implements CommandHandler, UpdateHandler {
     }
 
     private boolean isCallbackQueryUpdate(Update update) {
-        return update.hasCallbackQuery() && 
+        return update.hasCallbackQuery() &&
                 CALLBACKS.stream().anyMatch(callback -> update.getCallbackQuery().getData().startsWith(callback));
     }
 

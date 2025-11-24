@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
@@ -30,6 +32,8 @@ import ua.ivanzaitsev.bot.repositories.ClientOrderStateRepository;
 import ua.ivanzaitsev.bot.repositories.ClientRepository;
 import ua.ivanzaitsev.bot.services.MessageService;
 
+@Component
+@RequiredArgsConstructor
 public class CartCommandHandler implements CommandHandler, UpdateHandler {
 
     private static final int MAX_QUANTITY_PER_PRODUCT = 50;
@@ -52,22 +56,6 @@ public class CartCommandHandler implements CommandHandler, UpdateHandler {
     private final CartRepository cartRepository;
     private final ClientRepository clientRepository;
     private final MessageService messageService;
-
-    public CartCommandHandler(
-            CommandHandlerRegistry commandHandlerRegistry,
-            ClientCommandStateRepository clientCommandStateRepository,
-            ClientOrderStateRepository clientOrderStateRepository,
-            CartRepository cartRepository,
-            ClientRepository clientRepository,
-            MessageService messageService) {
-
-        this.commandHandlerRegistry = commandHandlerRegistry;
-        this.clientCommandStateRepository = clientCommandStateRepository;
-        this.clientOrderStateRepository = clientOrderStateRepository;
-        this.cartRepository = cartRepository;
-        this.clientRepository = clientRepository;
-        this.messageService = messageService;
-    }
 
     @Override
     public Command getCommand() {

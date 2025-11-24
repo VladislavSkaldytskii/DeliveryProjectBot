@@ -2,6 +2,7 @@ package ua.ivanzaitsev.bot.services.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -12,6 +13,7 @@ import ua.ivanzaitsev.bot.models.entities.Order;
 import ua.ivanzaitsev.bot.models.entities.OrderItem;
 import ua.ivanzaitsev.bot.services.NotificationService;
 
+@Service
 public class NotificationServiceDefault implements NotificationService {
 
     private final String adminPanelBaseUrl;

@@ -5,9 +5,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang3.SerializationUtils;
 
+import org.springframework.stereotype.Repository;
 import ua.ivanzaitsev.bot.models.domain.ClientAction;
 import ua.ivanzaitsev.bot.repositories.ClientActionRepository;
 
+@Repository
 public class ClientActionRepositoryDefault implements ClientActionRepository {
 
     private final Map<Long, ClientAction> clientsAction = new ConcurrentHashMap<>();

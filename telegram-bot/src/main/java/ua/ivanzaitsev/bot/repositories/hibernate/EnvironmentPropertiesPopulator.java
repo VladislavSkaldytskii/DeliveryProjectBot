@@ -1,5 +1,7 @@
 package ua.ivanzaitsev.bot.repositories.hibernate;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.stereotype.Repository;
 import ua.ivanzaitsev.bot.models.domain.Command;
 import ua.ivanzaitsev.bot.repositories.ClientCommandStateRepository;
 
+@Repository
 public class ClientCommandStateRepositoryDefault implements ClientCommandStateRepository {
 
     private final Map<Long, List<Command>> userCommands = new ConcurrentHashMap<>();

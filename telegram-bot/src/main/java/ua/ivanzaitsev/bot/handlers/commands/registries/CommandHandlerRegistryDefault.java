@@ -6,10 +6,12 @@ import static java.util.stream.Collectors.toMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
 import ua.ivanzaitsev.bot.exceptions.HandlerNotFoundException;
 import ua.ivanzaitsev.bot.handlers.CommandHandler;
 import ua.ivanzaitsev.bot.models.domain.Command;
 
+@Component
 public class CommandHandlerRegistryDefault implements CommandHandlerRegistry {
 
     private Map<Command, CommandHandler> commandHandlers;

@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import org.springframework.stereotype.Repository;
 import ua.ivanzaitsev.bot.models.entities.Category;
 import ua.ivanzaitsev.bot.models.entities.Client;
 import ua.ivanzaitsev.bot.models.entities.Message;

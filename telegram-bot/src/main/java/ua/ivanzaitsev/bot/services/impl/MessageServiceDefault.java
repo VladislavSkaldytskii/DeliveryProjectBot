@@ -6,21 +6,25 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.SerializationUtils;
 
+import org.springframework.stereotype.Service;
 import ua.ivanzaitsev.bot.models.entities.Message;
 import ua.ivanzaitsev.bot.repositories.MessageRepository;
 import ua.ivanzaitsev.bot.repositories.database.MessageRepositoryDefault;
 import ua.ivanzaitsev.bot.services.MessageService;
 
+@Service
 public class MessageServiceDefault implements MessageService {
 
-    private MessageRepository messageRepository = new MessageRepositoryDefault();
+    private MessageRepository messageRepository;
 
     private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
     private final Map<String, Message> cachedMessages = new HashMap<>();
 
-    public MessageServiceDefault() {
+    public MessageServiceDefault(MessageRepository messageRepository) {
+        this.messageRepository = messageRepository;
         startCacheClearTask();
     }
 

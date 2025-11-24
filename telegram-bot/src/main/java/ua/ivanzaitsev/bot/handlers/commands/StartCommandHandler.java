@@ -1,6 +1,8 @@
 package ua.ivanzaitsev.bot.handlers.commands;
 
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.bots.AbsSender;
@@ -13,18 +15,12 @@ import ua.ivanzaitsev.bot.models.entities.Client;
 import ua.ivanzaitsev.bot.repositories.ClientRepository;
 import ua.ivanzaitsev.bot.services.MessageService;
 
+@Component
+@RequiredArgsConstructor
 public class StartCommandHandler implements UpdateHandler {
 
     private final ClientRepository clientRepository;
     private final MessageService messageService;
-
-    public StartCommandHandler(
-            ClientRepository clientRepository,
-            MessageService messageService) {
-
-        this.clientRepository = clientRepository;
-        this.messageService = messageService;
-    }
 
     @Override
     public Command getCommand() {

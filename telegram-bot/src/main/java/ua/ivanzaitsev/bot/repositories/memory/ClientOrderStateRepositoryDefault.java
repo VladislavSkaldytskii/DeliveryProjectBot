@@ -5,9 +5,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang3.SerializationUtils;
 
+import org.springframework.stereotype.Repository;
 import ua.ivanzaitsev.bot.models.domain.ClientOrder;
 import ua.ivanzaitsev.bot.repositories.ClientOrderStateRepository;
 
+@Repository
 public class ClientOrderStateRepositoryDefault implements ClientOrderStateRepository {
 
     private final Map<Long, ClientOrder> clientOrders = new ConcurrentHashMap<>();

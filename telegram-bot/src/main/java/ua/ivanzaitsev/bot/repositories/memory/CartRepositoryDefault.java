@@ -10,9 +10,11 @@ import java.util.stream.IntStream;
 
 import org.apache.commons.lang3.SerializationUtils;
 
+import org.springframework.stereotype.Repository;
 import ua.ivanzaitsev.bot.models.domain.CartItem;
 import ua.ivanzaitsev.bot.repositories.CartRepository;
 
+@Repository
 public class CartRepositoryDefault implements CartRepository {
 
     private final AtomicInteger lastCartItemId = new AtomicInteger();
