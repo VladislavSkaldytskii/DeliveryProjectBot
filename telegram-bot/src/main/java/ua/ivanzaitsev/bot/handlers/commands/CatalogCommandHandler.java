@@ -293,7 +293,7 @@ public class CatalogCommandHandler implements CommandHandler, UpdateHandler {
                     InlineKeyboardButton.builder()
                         .text("\u2796").callbackData(MINUS_PRODUCT_CALLBACK + product.getId()).build(),
                     InlineKeyboardButton.builder()
-                        .text(cartItem.getQuantity() + " pcs.").callbackData(PRODUCT_QUANTITY_CALLBACK).build(),
+                        .text("Кол-во: " + cartItem.getQuantity()).callbackData(PRODUCT_QUANTITY_CALLBACK).build(),
                     InlineKeyboardButton.builder()
                         .text("\u2795").callbackData(PLUS_PRODUCT_CALLBACK + product.getId()).build()
                     ));

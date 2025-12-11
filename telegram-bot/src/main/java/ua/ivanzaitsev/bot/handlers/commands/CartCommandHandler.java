@@ -327,7 +327,7 @@ public class CartCommandHandler implements CommandHandler, UpdateHandler {
         keyboardBuilder.keyboardRow(Arrays.asList(
                 InlineKeyboardButton.builder().text("\u2716").callbackData(DELETE_PRODUCT_CALLBACK).build(),
                 InlineKeyboardButton.builder().text("\u2796").callbackData(MINUS_PRODUCT_CALLBACK).build(),
-                InlineKeyboardButton.builder().text(cartItems.get(currentCartPage).getQuantity() + " pcs.")
+                InlineKeyboardButton.builder().text(cartItems.get(currentCartPage).getQuantity() + " кол-во.")
                     .callbackData(PRODUCT_QUANTITY_CALLBACK).build(),
                 InlineKeyboardButton.builder().text("\u2795").callbackData(PLUS_PRODUCT_CALLBACK).build()
                 ));

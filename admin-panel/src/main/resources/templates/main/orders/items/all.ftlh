@@ -24,9 +24,9 @@
             <input type="hidden" name="items[${item?index}].productPrice" value="${item.productPrice?c}">
             <tr>
                 <td>${item.productName}</td>
-                <td>${item.quantity?c} pcs.</td>
-                <td>${item.productPrice} $</td>
-                <td>${item.totalPrice} $</td>
+                <td>${item.quantity?c} кол-во.</td>
+                <td>${item.productPrice} ₽</td>
+                <td>${item.totalPrice} ₽</td>
             </tr>
         </#list>
         </tbody>

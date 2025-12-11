@@ -1,5 +1,6 @@
 package ua.ivanzaitsev.bot.services.impl;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -17,41 +18,51 @@ import ua.ivanzaitsev.bot.services.NotificationService;
 public class NotificationServiceDefault implements NotificationService {
 
     private final String adminPanelBaseUrl;
-    private final Long telegramAdminChatId;
+    private final List<Long> telegramAdminChatIds;
 
     public NotificationServiceDefault(ConfigReader configReader) {
         this.adminPanelBaseUrl = configReader.get("admin-panel.base-url");
-        this.telegramAdminChatId = Long.parseLong(configReader.get("telegram.admin.chat-id"));
+
+
+        String chatIdsRaw = configReader.get("telegram.admin.chat-id");
+
+        this.telegramAdminChatIds = Arrays.stream(chatIdsRaw.split(","))
+            .map(String::trim)
+            .map(Long::parseLong)
+            .toList();
     }
 
     @Override
     public void notifyAdminChatAboutNewOrder(AbsSender absSender, Order order) throws TelegramApiException {
-        sendOrderAndClientInformationMessage(absSender, order);
-        sendOrderItemsInformationMessage(absSender, order);
+        for (Long adminChatId : telegramAdminChatIds) {
+            sendOrderAndClientInformationMessage(absSender, order, adminChatId);
+            sendOrderItemsInformationMessage(absSender, order, adminChatId);
+        }
     }
-    private void sendOrderAndClientInformationMessage(AbsSender absSender, Order order) throws TelegramApiException {
+
+    private void sendOrderAndClientInformationMessage(AbsSender absSender, Order order, Long adminChatId) throws TelegramApiException {
         SendMessage message = SendMessage.builder()
-                .chatId(telegramAdminChatId)
-                .text(createOrderAndClientInformation(order))
-                .parseMode("HTML")
-                .build();
+            .chatId(adminChatId)
+            .text(createOrderAndClientInformation(order))
+            .parseMode("HTML")
+            .build();
         absSender.execute(message);
     }
 
-    private void sendOrderItemsInformationMessage(AbsSender absSender, Order order) throws TelegramApiException {
+    private void sendOrderItemsInformationMessage(AbsSender absSender, Order order, Long adminChatId) throws TelegramApiException {
         SendMessage message = SendMessage.builder()
-                .chatId(telegramAdminChatId)
-                .text(createOrderItemsInformation(order))
-                .parseMode("HTML")
-                .build();
+            .chatId(adminChatId)
+            .text(createOrderItemsInformation(order))
+            .parseMode("HTML")
+            .build();
         absSender.execute(message);
     }
 
     private String createOrderAndClientInformation(Order order) {
-        return "#order_" + order.getId() + "\n" +
-                "<b>Order url</b>:\n" + buildOrderUrl(order.getId()) + "\n\n" +
-                "<b>Order information</b>:\n" + buildOrderInformation(order) + "\n\n" +
-                "<b>Client information</b>:\n" + buildClientInformation(order.getClient());
+        return "#Заказ_" + order.getId() + "\n" +
+            //"<b>Order url</b>:\n" + buildOrderUrl(order.getId()) + "\n\n" +
+            "<b>Информация о заказе </b>:\n" + buildOrderInformation(order) + "\n\n" +
+            "<b>Информация о клиенте</b>:\n" + buildClientInformation(order.getClient());
     }
 
     private String buildOrderUrl(Integer orderId) {
@@ -64,15 +75,15 @@ public class NotificationServiceDefault implements NotificationService {
 
     private String buildClientInformation(Client client) {
         return "-Имя: " + client.getName() + "\n" +
-                "-Номер телефона: " + client.getPhoneNumber() + "\n" +
-                "-Город: " + client.getCity() + "\n" +
-                "-Адрес: " + client.getAddress() + "\n" +
-                "<a href=\"tg://user?id=" + client.getChatId() + "\">Open profile</a>";
+            "-Номер телефона: " + client.getPhoneNumber() + "\n" +
+            "-Город: " + client.getCity() + "\n" +
+            "-Адрес: " + client.getAddress() + "\n" +
+            "<a href=\"tg://user?id=" + client.getChatId() + "\">Открыть профиль</a>";
     }
 
     private String createOrderItemsInformation(Order order) {
-        return "#order_" + order.getId() + "\n" +
-                "<b>Order items</b>:\n" + buildOrderItemsInformation(order.getItems());
+        return "#Заказ_" + order.getId() + "\n" +
+            "<b>Заказанные товары</b>:\n" + buildOrderItemsInformation(order.getItems());
     }
 
     private String buildOrderItemsInformation(List<OrderItem> orderItems) {
@@ -82,8 +93,8 @@ public class NotificationServiceDefault implements NotificationService {
             OrderItem orderItem = orderItems.get(i);
 
             result.append(i + 1).append(") ").append(orderItem.getProductName()).append(" — ")
-                    .append(orderItem.getQuantity()).append(" pcs. = ")
-                    .append(orderItem.getProductPrice() * orderItem.getQuantity()).append(" ₽\n");
+                .append(orderItem.getQuantity()).append(" шт. = ")
+                .append(orderItem.getProductPrice() * orderItem.getQuantity()).append(" ₽\n");
         }
 
         return result.toString();
