@@ -1,16 +1,16 @@
 <#import "../../common/home.ftlh" as h>
 <#import "../../common/table.ftlh" as t>
 
-<@h.home "Messages list">
+<@h.home "Сообщения">
 
   <@t.table "messages" "asc" />
   <table id="messages" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Description</th>
-        <th>Text</th>
-        <th>Action</th>
+        <th>Номер</th>
+        <th>Описание</th>
+        <th>Текст</th>
+        <th>Править</th>
       </tr>
     </thead>
     <tbody>

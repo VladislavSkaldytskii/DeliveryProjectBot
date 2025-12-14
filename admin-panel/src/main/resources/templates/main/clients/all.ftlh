@@ -1,17 +1,17 @@
 <#import "../../common/home.ftlh" as h>
 <#import "../../common/table.ftlh" as t>
 
-<@h.home "Client list">
+<@h.home "Клиенты">
 
   <@t.table "clients" />
   <table id="clients" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>City</th>
-        <th>Active</th>
-        <th>Action</th>
+        <th>Номер</th>
+        <th>Имя</th>
+        <th>Город</th>
+        <th>Активность</th>
+        <th>Править</th>
       </tr>
     </thead>
     <tbody>

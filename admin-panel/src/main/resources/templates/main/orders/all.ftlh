@@ -1,18 +1,18 @@
 <#import "../../common/home.ftlh" as h>
 <#import "../../common/table.ftlh" as t>
 
-<@h.home "Orders list">
+<@h.home "Заказы">
 
   <@t.table "orders" />
   <table id="orders" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Client</th>
-        <th>Date</th>
-        <th>Status</th>
-        <th>Amount</th>
-        <th>Action</th>
+        <th>Номер</th>
+        <th>Клиент</th>
+        <th>Дата</th>
+        <th>Статутс</th>
+        <th>Ценность</th>
+        <th>Править</th>
       </tr>
     </thead>
     <tbody>

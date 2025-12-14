@@ -1,6 +1,6 @@
 <#import "../../common/home.ftlh" as h>
 
-<@h.home "Order editing">
+<@h.home "Редактирование заказа">
 
   <#if order??>
     <form method="post" action="orders/update">
@@ -12,7 +12,7 @@
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Client:</label>
+        <label class="col-sm-2">Клиент:</label>
         <div class="col-sm-10">
           <input type="hidden" name="client" value="${order.client.id?c}">
           ${order.client.name!} (<a target="_blank" href="clients/edit/${order.client.id?c}">view</a>)
@@ -20,7 +20,7 @@
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Date:</label>
+        <label class="col-sm-2">Дата:</label>
         <div class="col-sm-10">
           <input class="form-control" type="datetime-local" name="createdDate"
                  value="${order.createdDate.format('yyyy-MM-dd\'T\'HH:mm')}" readonly>
@@ -28,7 +28,7 @@
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Status:</label>
+        <label class="col-sm-2">Статус:</label>
         <div class="col-sm-10">
           <select class="form-control" name="status">
             <#list order.status.values() as status>
@@ -39,7 +39,7 @@
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Amount:</label>
+        <label class="col-sm-2">Цена:</label>
         <div class="col-sm-10">
           <input class="form-control" type="number" name="amount" value="<#if order.amount??>${order.amount?c}</#if>">
           <#if amountError??><div class="text-warning">${amountError}</div></#if>
@@ -49,17 +49,17 @@
       <#include "items/all.ftlh">
 
       <input type="hidden" name="_csrf" value="${_csrf.token}">
-      <button class="btn btn-success" type="submit">Update</button>
+      <button class="btn btn-success" type="submit">Обновить</button>
     </form>
 
     <form method="get" action="orders">
-      <button class="btn btn-info" type="submit">Back</button>
+      <button class="btn btn-info" type="submit">Назад</button>
     </form>
 
     <form method="post" action="orders/delete">
       <input type="hidden" name="id" value="${order.id?c}">
       <input type="hidden" name="_csrf" value="${_csrf.token}">
-      <button class="btn btn-danger" type="submit">Delete</button>
+      <button class="btn btn-danger" type="submit">Удалить</button>
     </form>
 
   <#else>

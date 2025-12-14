@@ -1,6 +1,6 @@
 <#import "../../common/home.ftlh" as h>
 
-<@h.home "User editing">
+<@h.home "Редактирование пользователя">
 
   <#if Error??>
     <div class="alert alert-warning" role="alert">
@@ -12,14 +12,14 @@
   <#if user??>
     <form method="post" action="users/update">
       <div class="form-group row">
-        <label class="col-sm-2">Id:</label>
+        <label class="col-sm-2">Номер:</label>
         <div class="col-sm-10">
           <input class="form-control" type="number" name="id" value="${user.id?c}" readonly>
         </div>
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Name:</label>
+        <label class="col-sm-2">Имя:</label>
         <div class="col-sm-10">
           <input class="form-control" name="name" value="${user.name}">
           <#if nameError??><div class="text-warning">${nameError}</div></#if>
@@ -27,7 +27,7 @@
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Username:</label>
+        <label class="col-sm-2">Логин:</label>
         <div class="col-sm-10">
           <input class="form-control" name="username" value="${user.username}">
           <#if usernameError??><div class="text-warning">${usernameError}</div></#if>
@@ -35,7 +35,7 @@
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Password:</label>
+        <label class="col-sm-2">Пароль:</label>
         <div class="col-sm-10">
           <input class="form-control" name="password">
           <#if passwordError??><div class="text-warning">${passwordError}</div></#if>
@@ -43,7 +43,7 @@
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Role:</label>
+        <label class="col-sm-2">Роль:</label>
         <div class="col-sm-10">
           <select class="form-control" name="role">
             <#list user.role.values() as role>
@@ -54,17 +54,17 @@
       </div>
 
       <input type="hidden" name="_csrf" value="${_csrf.token}">
-      <button class="btn btn-success" type="submit">Update</button>
+      <button class="btn btn-success" type="submit">Обновить</button>
     </form>
 
     <form method="get" action="users">
-      <button class="btn btn-info" type="submit">Back</button>
+      <button class="btn btn-info" type="submit">Назад</button>
     </form>
 
     <form method="post" action="users/delete">
       <input type="hidden" name="id" value="${user.id?c}">
       <input type="hidden" name="_csrf" value="${_csrf.token}">
-      <button class="btn btn-danger" type="submit">Delete</button>
+      <button class="btn btn-danger" type="submit">Удалить</button>
     </form>
 
   <#else>

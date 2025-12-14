@@ -3,6 +3,6 @@
 
 <@h.home "Home">
 
-  <label>Admin panel for chatbot</label>
+  <label>Панель управления чат ботом</label>
 
 </@h.home>

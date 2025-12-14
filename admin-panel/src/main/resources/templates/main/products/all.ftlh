@@ -1,21 +1,21 @@
 <#import "../../common/home.ftlh" as h>
 <#import "../../common/table.ftlh" as t>
 
-<@h.home "Product list">
+<@h.home "Продукты">
 
   <center class="mb-4">
-    <a class="btn btn-sm btn-info" href="products/add">Add product</a>
+    <a class="btn btn-sm btn-info" href="products/add">Добавить</a>
   </center>
 
   <@t.table "products" />
   <table id="products" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Price</th>
-        <th>Action</th>
+        <th>Номер</th>
+        <th>Наименование</th>
+        <th>Категория</th>
+        <th>Цена</th>
+        <th>Править</th>
       </tr>
     </thead>
     <tbody>

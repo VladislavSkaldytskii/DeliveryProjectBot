@@ -110,12 +110,12 @@ public class Client implements Serializable {
             return false;
         }
         Client client = (Client) o;
-        return active == client.active && 
-                Objects.equals(id, client.id) && 
-                Objects.equals(chatId, client.chatId) && 
-                Objects.equals(name, client.name) && 
-                Objects.equals(phoneNumber, client.phoneNumber) && 
-                Objects.equals(city, client.city) && 
+        return active == client.active &&
+                Objects.equals(id, client.id) &&
+                Objects.equals(chatId, client.chatId) &&
+                Objects.equals(name, client.name) &&
+                Objects.equals(phoneNumber, client.phoneNumber) &&
+                Objects.equals(city, client.city) &&
                 Objects.equals(address, client.address);
     }
 
@@ -126,12 +126,12 @@ public class Client implements Serializable {
 
     @Override
     public String toString() {
-        return "Client [id=" + id + 
-                ", chatId=" + chatId + 
-                ", name=" + name + 
-                ", phoneNumber=" + phoneNumber + 
-                ", city=" + city + 
-                ", address=" + address + 
+        return "Client [id=" + id +
+                ", chatId=" + chatId +
+                ", name=" + name +
+                ", phoneNumber=" + phoneNumber +
+                ", city=" + city +
+                ", address=" + address +
                 ", active=" + active + "]";
     }
 

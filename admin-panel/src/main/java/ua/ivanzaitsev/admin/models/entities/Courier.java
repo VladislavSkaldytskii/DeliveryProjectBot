@@ -1,21 +1,18 @@
 package ua.ivanzaitsev.admin.models.entities;
 
-import java.util.Objects;
-
 import jakarta.persistence.*;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.Objects;
+
 @Entity
-@Table(name = "clients")
-public class Client {
+@Table(name = "courier")
+public class Courier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "clients_seq")
     @SequenceGenerator(name = "clients_seq", sequenceName = "clients_id_seq", allocationSize = 1)
     private Integer id;
-
-    @Column(name = "chat_id", unique = true, nullable = false)
-    private Long chatId;
 
     @Column
     @Length(max = 255, message = "Name too long (more than 255 characters)")
@@ -35,10 +32,21 @@ public class Client {
 
     @Column(name = "is_active", nullable = false)
     private boolean active;
-    @OneToOne(mappedBy = "client")
-    private Courier courier;
 
-    public Client() {
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_chat_id", referencedColumnName = "chat_id", unique = true)
+    private Client client;
+
+    public Courier() {}
+
+
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Integer getId() {
@@ -47,14 +55,6 @@ public class Client {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Long getChatId() {
-        return chatId;
-    }
-
-    public void setChatId(Long chatId) {
-        this.chatId = chatId;
     }
 
     public String getName() {
@@ -97,14 +97,6 @@ public class Client {
         this.active = active;
     }
 
-    public Courier getCourier() {
-        return courier;
-    }
-
-    public void setCourier(Courier courier) {
-        this.courier = courier;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -113,30 +105,32 @@ public class Client {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Client client = (Client) o;
-        return active == client.active &&
-                Objects.equals(id, client.id) &&
-                Objects.equals(chatId, client.chatId) &&
-                Objects.equals(name, client.name) &&
-                Objects.equals(phoneNumber, client.phoneNumber) &&
-                Objects.equals(city, client.city) &&
-                Objects.equals(address, client.address);
+        Courier courier = (Courier) o;
+        return active == courier.active &&
+            Objects.equals(id, courier.id) &&
+
+            Objects.equals(name, courier.name) &&
+            Objects.equals(phoneNumber, courier.phoneNumber) &&
+            Objects.equals(city, courier.city) &&
+            Objects.equals(address, courier.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, chatId, name, phoneNumber, city, address, active);
+        return Objects.hash(id,  name, phoneNumber, city, address, active);
     }
 
     @Override
     public String toString() {
         return "Client [id=" + id +
-                ", chatId=" + chatId +
-                ", name=" + name +
-                ", phoneNumber=" + phoneNumber +
-                ", city=" + city +
-                ", address=" + address +
-                ", active=" + active + "]";
+
+            ", name=" + name +
+            ", phoneNumber=" + phoneNumber +
+            ", city=" + city +
+            ", address=" + address +
+            ", active=" + active + "]";
     }
 
 }
+
+

@@ -1,15 +1,15 @@
 <#import "../../../common/table.ftlh" as t>
 
 <div class="mt-5">
-    <h1>Order items</h1>
+    <h1>Заказаные товары</h1>
     <@t.table "items" />
     <table id="items" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Quantity</th>
-            <th>Product price</th>
-            <th>Total price</th>
+            <th>Наименование</th>
+            <th>Количество</th>
+            <th>Цена</th>
+            <th>Итого</th>
         </tr>
         </thead>
         <tbody>
