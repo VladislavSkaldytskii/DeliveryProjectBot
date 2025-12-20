@@ -49,7 +49,7 @@ public class NotificationServiceDefault implements NotificationService {
             }
 
             sendOrderAndClientInformationMessage(absSender, order, courier.getClient().getChatId());
-            sendOrderItemsInformationMessage(absSender, order, courier.getClient().getChatId());
+//            sendOrderItemsInformationMessage(absSender, order, courier.getClient().getChatId());
         }
     }
 
@@ -68,32 +68,33 @@ public class NotificationServiceDefault implements NotificationService {
         absSender.execute(message);
     }
 
-    private void sendOrderItemsInformationMessage(
-        AbsSender absSender,
-        Order order,
-        Long chatId
-    ) throws TelegramApiException {
-
-        SendMessage message = SendMessage.builder()
-            .chatId(chatId.toString())
-            .text(createOrderItemsInformation(order))
-            .parseMode("HTML")
-            .build();
-
-        absSender.execute(message);
-    }
+//    private void sendOrderItemsInformationMessage(
+//        AbsSender absSender,
+//        Order order,
+//        Long chatId
+//    ) throws TelegramApiException {
+//
+//        SendMessage message = SendMessage.builder()
+//            .chatId(chatId.toString())
+//            .text(createOrderItemsInformation(order))
+//            .parseMode("HTML")
+//            .build();
+//
+//        absSender.execute(message);
+//    }
 
     private String createOrderAndClientInformation(Order order) {
         return "#Заказ_" + order.getId() + "\n" +
-            "<b>Информация о заказе</b>:\n" +
-            buildOrderInformation(order) + "\n\n" +
             "<b>Информация о клиенте</b>:\n" +
-            buildClientInformation(order.getClient());
+            buildClientInformation(order.getClient()) + "\n\n" +
+            "<b>Информация о заказе</b>:\n" +
+            "Заказанные товары: " + "\n" +
+            buildOrderItemsInformation(order.getItems());
     }
 
-    private String buildOrderInformation(Order order) {
-        return "-Сумма: " + order.getAmount() + " ₽";
-    }
+//    private String buildOrderInformation(Order order) {
+//        return "-Сумма: " + order.getAmount() + " ₽";
+//    }
 
     private String buildClientInformation(Client client) {
         return "-Имя: " + client.getName() + "\n" +
@@ -103,11 +104,11 @@ public class NotificationServiceDefault implements NotificationService {
             "<a href=\"tg://user?id=" + client.getChatId() + "\">Открыть профиль</a>";
     }
 
-    private String createOrderItemsInformation(Order order) {
-        return "#Заказ_" + order.getId() + "\n" +
-            "<b>Заказанные товары</b>:\n" +
-            buildOrderItemsInformation(order.getItems());
-    }
+//    private String createOrderItemsInformation(Order order) {
+//        return "#Заказ_" + order.getId() + "\n" +
+//            "<b>Заказанные товары</b>:\n" +
+//            buildOrderItemsInformation(order.getItems());
+//    }
 
     private String buildOrderItemsInformation(List<OrderItem> orderItems) {
         StringBuilder result = new StringBuilder();

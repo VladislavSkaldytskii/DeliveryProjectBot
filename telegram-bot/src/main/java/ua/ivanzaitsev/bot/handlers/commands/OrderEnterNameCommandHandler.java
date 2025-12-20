@@ -80,7 +80,7 @@ public class OrderEnterNameCommandHandler implements CommandHandler, ActionHandl
 
         SendMessage message = SendMessage.builder()
                 .chatId(chatId)
-                .text("Current name: " + clientOrder.getClientName())
+                .text("Ранее введенное имя: " + clientOrder.getClientName())
                 .replyMarkup(buildReplyKeyboardMarkup(true))
                 .build();
         absSender.execute(message);

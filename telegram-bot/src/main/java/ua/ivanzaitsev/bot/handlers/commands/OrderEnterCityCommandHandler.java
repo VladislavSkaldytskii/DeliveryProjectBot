@@ -77,7 +77,7 @@ public class OrderEnterCityCommandHandler implements CommandHandler, ActionHandl
 
         SendMessage message = SendMessage.builder()
                 .chatId(chatId)
-                .text("Current city: " + clientOrder.getCity())
+                .text("Текущий город: " + clientOrder.getCity())
                 .replyMarkup(buildReplyKeyboardMarkup(true))
                 .build();
         absSender.execute(message);

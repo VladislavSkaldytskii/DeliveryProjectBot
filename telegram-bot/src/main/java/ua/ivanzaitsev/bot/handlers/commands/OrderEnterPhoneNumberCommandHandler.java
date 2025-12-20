@@ -79,7 +79,7 @@ public class OrderEnterPhoneNumberCommandHandler implements CommandHandler, Upda
 
         SendMessage message = SendMessage.builder()
                 .chatId(chatId)
-                .text("Current phone number: " + clientOrder.getPhoneNumber())
+                .text("Текущий номер: " + clientOrder.getPhoneNumber())
                 .replyMarkup(buildReplyKeyboardMarkup(true))
                 .build();
         absSender.execute(message);
