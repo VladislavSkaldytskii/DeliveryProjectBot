@@ -4,18 +4,18 @@
 <@h.home "User list">
 
   <center class="mb-4">
-    <a class="btn btn-sm btn-info" href="users/add">Add user</a>
+    <a class="btn btn-sm btn-info" href="users/add">Добавить пользователя</a>
   </center>
 
   <@t.table "users" />
   <table id="users" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Username</th>
-        <th>Role</th>
-        <th>Action</th>
+        <th>Номер</th>
+        <th>Имя</th>
+        <th>Логин</th>
+        <th>Роль</th>
+        <th>Править</th>
       </tr>
     </thead>
     <tbody>

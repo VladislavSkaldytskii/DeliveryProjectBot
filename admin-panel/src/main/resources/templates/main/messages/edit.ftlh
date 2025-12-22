@@ -1,18 +1,18 @@
 <#import "../../common/home.ftlh" as h>
 
-<@h.home "Message editing">
+<@h.home "Редактирование сообщения">
 
   <#if message??>
     <form method="post" action="messages/update">
       <div class="form-group row">
-        <label class="col-sm-2">Id:</label>
+        <label class="col-sm-2">Номер:</label>
         <div class="col-sm-10">
           <input class="form-control" type="number" name="id" value="${message.id?c}" readonly>
         </div>
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Name:</label>
+        <label class="col-sm-2">Название:</label>
         <div class="col-sm-10">
           <input class="form-control" name="name" value="${message.name!}" readonly>
           <#if messageNameError??><div class="text-warning">${messageNameError}</div></#if>
@@ -20,7 +20,7 @@
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Description:</label>
+        <label class="col-sm-2">Описание:</label>
         <div class="col-sm-10">
           <input class="form-control" name="description" value="${message.description!}" readonly>
           <#if messageDescriptionError??><div class="text-warning">${messageDescriptionError}</div></#if>
@@ -28,7 +28,7 @@
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Text:</label>
+        <label class="col-sm-2">Текст:</label>
         <div class="col-sm-10">
           <textarea class="form-control" name="text" rows="8">${message.text!}</textarea>
           <#if messageTextError??><div class="text-warning">${messageTextError}</div></#if>
@@ -36,11 +36,11 @@
       </div>
 
       <input type="hidden" name="_csrf" value="${_csrf.token}">
-      <button class="btn btn-success" type="submit">Update</button>
+      <button class="btn btn-success" type="submit">Обновить</button>
     </form>
 
     <form method="get" action="messages">
-      <button class="btn btn-info" type="submit">Back</button>
+      <button class="btn btn-info" type="submit">Назад</button>
     </form>
 
   <#else>

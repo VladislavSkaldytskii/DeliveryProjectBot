@@ -1,6 +1,6 @@
 <#import "../../common/home.ftlh" as h>
 
-<@h.home "Broadcast adding">
+<@h.home "Написать сообщение на бота">
 
   <#if RequestParameters.send?? >
     <div class="alert alert-success" role="alert">
@@ -10,14 +10,14 @@
 
   <form method="post" action="broadcasts/send">
     <div class="form-group row">
-      <label class="col-sm-2">Text:</label>
+      <label class="col-sm-2">Текст:</label>
       <div class="col-sm-10">
         <textarea class="form-control" name="text" rows="8" maxlength="4096" required></textarea>
       </div>
     </div>
 
     <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <button class="btn btn-success" type="submit">Send</button>
+    <button class="btn btn-success" type="submit">Отправить</button>
   </form>
 
 </@h.home>

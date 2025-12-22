@@ -1,18 +1,18 @@
 <#import "../../common/home.ftlh" as h>
 
-<@h.home "Category editing">
+<@h.home "Редактирование категорий ">
 
   <#if category??>
     <form method="post" action="categories/update">
       <div class="form-group row">
-        <label class="col-sm-2">Id:</label>
+        <label class="col-sm-2">Номер:</label>
         <div class="col-sm-10">
           <input class="form-control" type="number" name="id" value="${category.id?c}" readonly>
         </div>
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Name:</label>
+        <label class="col-sm-2">Название:</label>
         <div class="col-sm-10">
           <input class="form-control" name="name" value="${category.name!}">
           <#if nameError??><div class="text-warning">${nameError}</div></#if>
@@ -20,17 +20,17 @@
       </div>
 
       <input type="hidden" name="_csrf" value="${_csrf.token}">
-      <button class="btn btn-success" type="submit">Update</button>
+      <button class="btn btn-success" type="submit">Обновить</button>
     </form>
 
     <form method="get" action="categories">
-      <button class="btn btn-info" type="submit">Back</button>
+      <button class="btn btn-info" type="submit">Назад</button>
     </form>
 
     <form method="post" action="categories/delete">
       <input type="hidden" name="id" value="${category.id?c}">
       <input type="hidden" name="_csrf" value="${_csrf.token}">
-      <button class="btn btn-danger" type="submit">Delete</button>
+      <button class="btn btn-danger" type="submit">Удалить</button>
     </form>
 
   <#else>

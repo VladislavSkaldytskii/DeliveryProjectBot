@@ -1,10 +1,10 @@
 <#import "../../common/home.ftlh" as h>
 
-<@h.home "User adding">
+<@h.home "Добавление пользователя ">
 
   <form method="post" action="users/create">
     <div class="form-group row">
-      <label class="col-sm-2">Name:</label>
+      <label class="col-sm-2">Имя:</label>
       <div class="col-sm-10">
         <input class="form-control" name="name" value="<#if user??>${user.name}</#if>">
         <#if nameError??><div class="text-warning">${nameError}</div></#if>
@@ -12,7 +12,7 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-sm-2">Username:</label>
+      <label class="col-sm-2">Логин:</label>
       <div class="col-sm-10">
         <input class="form-control" name="username" value="<#if user??>${user.username}</#if>">
         <#if usernameError??><div class="text-warning">${usernameError}</div></#if>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-sm-2">Password:</label>
+      <label class="col-sm-2">Пароль:</label>
       <div class="col-sm-10">
         <input class="form-control" name="password" value="<#if user??>${user.password}</#if>">
         <#if passwordError??><div class="text-warning">${passwordError}</div></#if>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-sm-2">Role:</label>
+      <label class="col-sm-2">Роль:</label>
       <div class="col-sm-10">
         <select class="form-control" name="role">
           <#list roles as role>
@@ -39,11 +39,11 @@
     </div>
 
     <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <button class="btn btn-success" type="submit">Create</button>
+    <button class="btn btn-success" type="submit">Создать</button>
   </form>
 
   <form method="get" action="users">
-    <button class="btn btn-info" type="submit">Back</button>
+    <button class="btn btn-info" type="submit">Назад</button>
   </form>
 
 </@h.home>

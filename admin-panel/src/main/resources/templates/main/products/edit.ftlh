@@ -1,7 +1,7 @@
 <#import "../../common/home.ftlh" as h>
 <#import "../../common/fileinput.ftlh" as f>
 
-<@h.home "Product editing">
+<@h.home "Редактирование продукта">
 
   <#if product??>
     <@f.fileinput "photo", "${product.photoUrl!}" />
@@ -10,14 +10,14 @@
 
     <form method="post" action="products/update" enctype="multipart/form-data">
       <div class="form-group row">
-        <label class="col-sm-2">Id:</label>
+        <label class="col-sm-2">Номер:</label>
         <div class="col-sm-10">
           <input class="form-control" type="number" name="id" value="${product.id?c}" readonly>
         </div>
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Photo:</label>
+        <label class="col-sm-2">Фото:</label>
         <div class="col-sm-10">
           <input type="hidden" name="photoUrl" value="${product.photoUrl!}">
           <input class="form-control" id="photo" type="file" name="photo">
@@ -25,7 +25,7 @@
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Name:</label>
+        <label class="col-sm-2">Наименование:</label>
         <div class="col-sm-10">
           <input class="form-control" name="name" value="${product.name!}">
           <#if nameError??><div class="text-warning">${nameError}</div></#if>
@@ -33,7 +33,7 @@
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Description:</label>
+        <label class="col-sm-2">Описание:</label>
         <div class="col-sm-10">
           <textarea class="form-control" name="description" rows="4">${product.description!}</textarea>
           <#if descriptionError??><div class="text-warning">${descriptionError}</div></#if>
@@ -41,7 +41,7 @@
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Category:</label>
+        <label class="col-sm-2">Категория:</label>
         <div class="col-sm-10">
           <select class="form-control selectpicker" name="category" data-live-search="true" data-size="4">
             <#if !product.category??><option selected>—</option></#if>
@@ -54,7 +54,7 @@
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2">Price:</label>
+        <label class="col-sm-2">Цена:</label>
         <div class="col-sm-10">
           <input class="form-control" type="number" name="price" value="<#if product.price??>${product.price?c}</#if>">
           <#if priceError??><div class="text-warning">${priceError}</div></#if>
@@ -62,17 +62,17 @@
       </div>
 
       <input type="hidden" name="_csrf" value="${_csrf.token}">
-      <button class="btn btn-success" type="submit">Update</button>
+      <button class="btn btn-success" type="submit">Обновить</button>
     </form>
 
     <form method="get" action="products">
-      <button class="btn btn-info" type="submit">Back</button>
+      <button class="btn btn-info" type="submit">Назад</button>
     </form>
 
     <form method="post" action="products/delete">
       <input type="hidden" name="id" value="${product.id?c}">
       <input type="hidden" name="_csrf" value="${_csrf.token}">
-      <button class="btn btn-danger" type="submit">Delete</button>
+      <button class="btn btn-danger" type="submit">Удалить</button>
     </form>
 
   <#else>

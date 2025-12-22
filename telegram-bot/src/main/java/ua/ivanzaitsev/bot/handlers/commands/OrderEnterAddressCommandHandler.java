@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -20,6 +21,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
+import org.telegram.telegrambots.meta.api.objects.webapp.WebAppInfo;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -95,9 +97,10 @@ public class OrderEnterAddressCommandHandler implements CommandHandler, ActionHa
         keyboardBuilder.resizeKeyboard(true);
         keyboardBuilder.selective(true);
 
+
         keyboardBuilder.keyboardRow(new KeyboardRow(Arrays.asList(
             KeyboardButton.builder()
-                .text("📍 Отправить геолокацию")
+                .text("📍 Выбрать место на карте")
                 .requestLocation(true)
                 .build()
         )));
@@ -126,7 +129,7 @@ public class OrderEnterAddressCommandHandler implements CommandHandler, ActionHa
         String text = update.getMessage().getText();
 
         if (update.getMessage().hasLocation()) {
-            Location loc = update.getMessage().getLocation();
+             Location loc = update.getMessage().getLocation();
 
             String address = reverseGeocode(loc.getLatitude(), loc.getLongitude());
 

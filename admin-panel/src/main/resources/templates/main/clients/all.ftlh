@@ -1,17 +1,17 @@
 <#import "../../common/home.ftlh" as h>
 <#import "../../common/table.ftlh" as t>
 
-<@h.home "Client list">
+<@h.home "Клиенты">
 
   <@t.table "clients" />
   <table id="clients" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>City</th>
-        <th>Active</th>
-        <th>Action</th>
+        <th>Номер</th>
+        <th>Имя</th>
+        <th>Город</th>
+        <th>Активность</th>
+        <th>Править</th>
       </tr>
     </thead>
     <tbody>
@@ -20,7 +20,7 @@
           <td>${client.id?c}</td>
           <td>${client.name!}</td>
           <td>${client.city!}</td>
-          <td><#if client.active>Yes<#else>No</#if></td>
+          <td><#if client.active>Да<#else>Нет</#if></td>
           <td>
             <a class="btn btn-xs btn-info" href="clients/edit/${client.id?c}">
               <i class="fa fa-pencil" aria-hidden="true"></i>

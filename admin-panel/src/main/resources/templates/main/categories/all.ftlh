@@ -1,19 +1,19 @@
 <#import "../../common/home.ftlh" as h>
 <#import "../../common/table.ftlh" as t>
 
-<@h.home "Category list">
+<@h.home "Категории">
 
   <center class="mb-4">
-    <a class="btn btn-sm btn-info" href="categories/add">Add category</a>
+    <a class="btn btn-sm btn-info" href="categories/add">Добавить категорию</a>
   </center>
 
   <@t.table "categories" />
   <table id="categories" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Action</th>
+        <th>Номер</th>
+        <th>Название</th>
+        <th>Править</th>
       </tr>
     </thead>
     <tbody>

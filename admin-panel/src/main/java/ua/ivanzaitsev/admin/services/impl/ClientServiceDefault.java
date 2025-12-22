@@ -26,7 +26,7 @@ public class ClientServiceDefault implements ClientService {
             throw new IllegalArgumentException("Id of Client should not be NULL");
         }
 
-        return repository.findById(id).orElse(null);
+        return repository.findById(Long.valueOf(id)).orElse(null);
     }
 
     @Override
