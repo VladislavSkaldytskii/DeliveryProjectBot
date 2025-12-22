@@ -63,6 +63,12 @@
       <button class="btn btn-info" type="submit">Назад</button>
     </form>
 
+      <form method="post" action="couriers/delete">
+          <input type="hidden" name="id" value="${courier.id}">
+          <input type="hidden" name="_csrf" value="${_csrf.token}">
+          <button class="btn btn-danger" type="submit">Удалить</button>
+      </form>
+
 
   <#else>
     <div class="alert alert-danger" role="alert">

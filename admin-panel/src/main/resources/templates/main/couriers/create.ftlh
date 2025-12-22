@@ -7,7 +7,7 @@
             <label class="col-sm-2">Клиент:</label>
             <div class="col-sm-10">
                 <select class="form-control" name="chatId" required>
-                    <option value="" disabled selected>Select client</option>
+                    <option value="" disabled selected>Выбрать из клиентов</option>
 
                     <#list clients as client>
                         <option value="${client.chatId?c}">

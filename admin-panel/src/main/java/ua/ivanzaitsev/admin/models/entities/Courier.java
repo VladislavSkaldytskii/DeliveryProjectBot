@@ -10,8 +10,8 @@ import java.util.Objects;
 public class Courier {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "clients_seq")
-    @SequenceGenerator(name = "clients_seq", sequenceName = "clients_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "courier_seq")
+    @SequenceGenerator(name = "courier_seq", sequenceName = "courier_id_seq", allocationSize = 1)
     private Integer id;
 
     @Column

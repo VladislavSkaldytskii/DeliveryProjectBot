@@ -2,10 +2,10 @@ package ua.ivanzaitsev.admin.models.entities;
 
 public enum OrderStatus {
 
-    WAITING("Waiting"),
-    PROCESSED("Processed"),
-    COMPLETED("Completed"),
-    CANCELED("Canceled");
+    WAITING("В ожидании"),
+    PROCESSED("В процессе"),
+    COMPLETED("Выполнен"),
+    CANCELED("Отменен");
 
     private final String value;
 

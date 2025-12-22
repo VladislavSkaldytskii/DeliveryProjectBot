@@ -13,6 +13,5 @@ public interface CourierRepository  extends JpaRepository<Courier, Long> {
     List<Courier> findAllByActive(boolean active);
     Optional<Courier> findByClient(Client client);
 
-
-
+    void deleteById(Integer id);
 }

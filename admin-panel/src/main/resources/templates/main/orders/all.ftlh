@@ -22,7 +22,7 @@
           <td>${order.client.name!} (<a target="_blank" href="clients/edit/${order.client.id?c}">view</a>)</td>
           <td>${order.createdDate.format('dd.MM.yyyy HH:mm')}</td>
           <td>${order.status.value}</td>
-          <td>${order.amount} $</td>
+          <td>${order.amount} ₽</td>
           <td>
             <a class="btn btn-xs btn-info" href="orders/edit/${order.id?c}">
               <i class="fa fa-pencil" aria-hidden="true"></i>

@@ -35,8 +35,7 @@ public class Client {
 
     @Column(name = "is_active", nullable = false)
     private boolean active;
-    @OneToOne(mappedBy = "client")
-    private Courier courier;
+
 
     public Client() {
     }
@@ -97,13 +96,7 @@ public class Client {
         this.active = active;
     }
 
-    public Courier getCourier() {
-        return courier;
-    }
 
-    public void setCourier(Courier courier) {
-        this.courier = courier;
-    }
 
     @Override
     public boolean equals(Object o) {

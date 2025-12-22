@@ -24,7 +24,7 @@
           <td>${courier.id?c}</td>
           <td>${courier.name!}</td>
           <td>${courier.city!}</td>
-          <td><#if courier.active>Yes<#else>No</#if></td>
+          <td><#if courier.active>Да<#else>Нет</#if></td>
           <td>
             <a class="btn btn-xs btn-info" href="couriers/edit/${courier.id?c}">
               <i class="fa fa-pencil" aria-hidden="true"></i>

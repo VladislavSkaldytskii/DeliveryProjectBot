@@ -61,9 +61,8 @@ public class CourierController {
     }
 
     @PostMapping("/delete")
-    public String deleteCourier(@RequestParam Integer id) {
+    public String delete(@RequestParam Integer id) {
         courierService.deleteById(id);
         return "redirect:/couriers";
     }
-
 }

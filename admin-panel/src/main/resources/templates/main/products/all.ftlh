@@ -24,7 +24,7 @@
           <td>${product.id?c}</td>
           <td>${product.name}</td>
           <td><#if product.category??>${product.category.name}<#else>—</#if></td>
-          <td>${product.price} $</td>
+          <td>${product.price} ₽</td>
           <td>
             <a class="btn btn-xs btn-info" href="products/edit/${product.id?c}">
               <i class="fa fa-pencil" aria-hidden="true"></i>

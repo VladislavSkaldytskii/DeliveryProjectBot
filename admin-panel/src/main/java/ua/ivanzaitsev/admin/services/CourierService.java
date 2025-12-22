@@ -1,5 +1,6 @@
 package ua.ivanzaitsev.admin.services;
 
+import org.springframework.transaction.annotation.Transactional;
 import ua.ivanzaitsev.admin.models.entities.Courier;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public interface CourierService {
 
     public Courier save(Long chatId);
 
-
+    @Transactional
     void deleteById(Integer id);
+
 }
