@@ -54,3 +54,16 @@ create table messages(
     description varchar(255) not null,
     text varchar(4096) not null
 );
+
+create table courier
+(
+    id serial primary key,
+    client_chat_id bigint  not null unique references clients (chat_id),
+    name           varchar(255),
+    phone_number   varchar(255),
+    city           varchar(255),
+    address        varchar(255),
+    is_active      boolean not null
+);
+
+

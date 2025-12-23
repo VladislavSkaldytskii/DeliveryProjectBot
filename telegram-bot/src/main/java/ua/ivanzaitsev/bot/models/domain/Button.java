@@ -16,7 +16,7 @@ public enum Button {
     ORDER_STEP_NEXT("\u2714\uFE0F Подтвердить заказ"),
     ORDER_STEP_PREVIOUS("\u25C0 Назад"),
     ORDER_STEP_CANCEL("\u274C Отменить заказ"),
-    ORDER_CONFIRM("\u2705 Доставка");
+    ORDER_CONFIRM("\u2705 Ок");
 
     private final String alias;
 

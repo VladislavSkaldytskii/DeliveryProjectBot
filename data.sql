@@ -12,7 +12,7 @@ insert into products(id, category_id, photo_url, name,  description, price) valu
 (nextval('products_id_seq'), 1, 'https://images.unsplash.com/photo-1544025162-d76694265947?w=200', 'Steak', 'roasted ribs with sliced tomatoes and potatoes', 39);
 
 insert into messages(id, name, description, text) values
-(nextval('messages_id_seq'), 'START_MESSAGE', 'Start', 'Online shop :)'),
+(nextval('messages_id_seq'), 'START_MESSAGE', 'Start', 'Введите /start для регистрации и создания заказа'),
 (nextval('messages_id_seq'), 'ORDER_CREATED_MESSAGE', 'Order', 'Заказ создан.'),(nextval('messages_id_seq'), 'CART_MESSAGE', 'Cart', '<b>Корзина</b>:
 
 -Наименование продукта: %PRODUCT_NAME%

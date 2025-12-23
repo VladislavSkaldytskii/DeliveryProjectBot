@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -16,9 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Location;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.api.objects.webapp.WebAppInfo;
@@ -97,24 +101,37 @@ public class OrderEnterAddressCommandHandler implements CommandHandler, ActionHa
         keyboardBuilder.resizeKeyboard(true);
         keyboardBuilder.selective(true);
 
+        keyboardBuilder.keyboardRow(new KeyboardRow(Arrays.asList(
+            KeyboardButton.builder()
+                .text("Ввести самостоятельно ⬆\uFE0F")
+                .build()
+
+        )));
 
         keyboardBuilder.keyboardRow(new KeyboardRow(Arrays.asList(
             KeyboardButton.builder()
-                .text("📍 Выбрать место на карте")
+                .text("Выбрать на карте")
+                .build()
+        )));
+
+
+        keyboardBuilder.keyboardRow(new KeyboardRow(Arrays.asList(
+            KeyboardButton.builder()
+                .text("Текущее местоположение📍")
                 .requestLocation(true)
                 .build()
         )));
 
         if (skip) {
             keyboardBuilder.keyboardRow(new KeyboardRow(Arrays.asList(
-                    KeyboardButton.builder().text(Button.ORDER_STEP_NEXT.getAlias()).build()
-                    )));
+                KeyboardButton.builder().text(Button.ORDER_STEP_NEXT.getAlias()).build()
+            )));
         }
 
         keyboardBuilder.keyboardRow(new KeyboardRow(Arrays.asList(
-                KeyboardButton.builder().text(Button.ORDER_STEP_CANCEL.getAlias()).build(),
-                KeyboardButton.builder().text(Button.ORDER_STEP_PREVIOUS.getAlias()).build()
-                )));
+            KeyboardButton.builder().text(Button.ORDER_STEP_CANCEL.getAlias()).build(),
+            KeyboardButton.builder().text(Button.ORDER_STEP_PREVIOUS.getAlias()).build()
+        )));
         return keyboardBuilder.build();
     }
 
@@ -128,8 +145,9 @@ public class OrderEnterAddressCommandHandler implements CommandHandler, ActionHa
         Long chatId = update.getMessage().getChatId();
         String text = update.getMessage().getText();
 
+
         if (update.getMessage().hasLocation()) {
-             Location loc = update.getMessage().getLocation();
+            Location loc = update.getMessage().getLocation();
 
             String address = reverseGeocode(loc.getLatitude(), loc.getLongitude());
 
@@ -144,6 +162,15 @@ public class OrderEnterAddressCommandHandler implements CommandHandler, ActionHa
             executeNextCommand(absSender, update, chatId);
             return;
         }
+        if ("Выбрать на карте".equals(update.getMessage().getText())) {
+            SendMessage msg = SendMessage.builder()
+                .chatId(chatId)
+                .text("Вот ваша инструкция:\n1.Нажмите на скрепку слева\n2.Нажмите на геопозицию\n3.Выберите адрес")
+                .build();
+            absSender.execute(msg);
+            return;
+        }
+
 
         if (Button.ORDER_STEP_NEXT.getAlias().equals(text)) {
             executeNextCommand(absSender, update, chatId);
