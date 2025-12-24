@@ -1,0 +1,13 @@
+package ru.skaldytskiyvladislav.delivery.repositories;
+
+import ru.skaldytskiyvladislav.delivery.models.domain.ClientAction;
+
+public interface ClientActionRepository {
+
+    ClientAction findByChatId(Long chatId);
+
+    void updateByChatId(Long chatId, ClientAction clientAction);
+
+    void deleteByChatId(Long chatId);
+
+}

@@ -122,7 +122,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>ua.ivanzaitsev.bot.Application</mainClass>
+                            <mainClass>ru.skaldytskiyvladislav.delivery.Application</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
